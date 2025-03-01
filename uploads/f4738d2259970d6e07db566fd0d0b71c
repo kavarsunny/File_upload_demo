@@ -1,0 +1,156 @@
+package com.example.sqldatabase_creationapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class LoginActivity2 extends AppCompatActivity {
+
+    Button submitBtn, cancleBtn;
+    EditText uName, passWord;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login2);
+
+        submitBtn = findViewById(R.id.submit_btn);
+        cancleBtn = findViewById(R.id.cancle_btn);
+        uName = findViewById(R.id.uname_btn);
+        passWord = findViewById(R.id.password_et);
+
+
+        submitBtn.setOnClickListener(v -> {
+            String uname, passwd;
+            uname = uName.getText().toString().trim();
+            passwd = passWord.getText().toString().trim();
+
+            if (uname.isEmpty()){
+                uName.setError("Enter Username");
+                uName.requestFocus();
+            } else if (passwd.isEmpty()){
+                passWord.setError("Enter password");
+                passWord.requestFocus();
+            } else if (uname == "maulik" && passwd == "1234"){
+                Toast.makeText(this, "welcome " + uname, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity2.this, welcomeActivity.class);
+                
+                startActivity(intent);
+
+            } else {
+                Toast.makeText(this, "Invalid Creds !", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+}
+
+
+
+
+===============================================
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_margin="10pt"
+    tools:context=".LoginActivity2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Username : "/>
+
+        <EditText
+            android:id="@+id/uname_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Username"
+            android:inputType="text"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="password : "/>
+
+            <EditText
+                android:id="@+id/password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_weight="1"
+                android:layout_margin="5pt"/>
+
+            <Button
+                android:id="@+id/cancle_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancle"
+                android:layout_weight="1"
+                android:layout_margin="5pt"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
